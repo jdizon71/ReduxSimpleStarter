@@ -18,7 +18,7 @@ class SearchBar extends Component { // extends React.Component gives SearchBar f
     );
   }
 
-}
+};
 
 // const SearchBar = () => { // functional component syntax
 //   return <input />;
