@@ -1,9 +1,12 @@
 import React from 'react'; // ES6 import statement
 import ReactDOM from 'react-dom'; // Used to render a component to the DOM
+import YTSearch from 'youtube-api-search';
 
 import SearchBar from './components/searchBar';
 
 const API_KEY = 'AIzaSyAMv4EEYImFMpRPIIG6AiEozrWFsWmncU8';
+
+YTSearch({ key: API_KEY, term: 'boosted board' }, (data) => console.log(data) );
 
 // Create a new component
 // This component should generate some HTML
