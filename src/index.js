@@ -4,6 +4,7 @@ import YTSearch from 'youtube-api-search';
 
 import SearchBar from './components/searchBar';
 import VideoList from './components/videoList';
+import VideoDetail from './components/videoDetail';
 
 const API_KEY = 'AIzaSyAMv4EEYImFMpRPIIG6AiEozrWFsWmncU8';
 
@@ -25,6 +26,7 @@ class App extends Component { // ES6 syntax replaces `function` keyword with fat
     return ( // For multiline JSX, it's best, but not required to use () to encapsulate the entire expression
       <div>
         <SearchBar />
+        <VideoDetail video={ this.state.videos[0] }/>
         <VideoList videos={ this.state.videos } />
       </div>
     );
