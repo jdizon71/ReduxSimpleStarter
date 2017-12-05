@@ -15,10 +15,16 @@ class App extends Component { // ES6 syntax replaces `function` keyword with fat
   constructor(props) {
     super(props)
 
-    this.state = { videos: [] }
+    this.state = {
+      videos: [],
+      selectedVideo: null
+     }
 
     YTSearch({ key: API_KEY, term: 'boosted board' }, (videos) => { // `video` is arbitrary; you can whatever variable name you want
-      this.setState({ videos });
+      this.setState({
+        videos: videos,
+        selectedVideo: videos[0]
+      });
     });
   }
 
@@ -26,8 +32,10 @@ class App extends Component { // ES6 syntax replaces `function` keyword with fat
     return ( // For multiline JSX, it's best, but not required to use () to encapsulate the entire expression
       <div>
         <SearchBar />
-        <VideoDetail video={ this.state.videos[0] }/>
-        <VideoList videos={ this.state.videos } />
+        <VideoDetail video={ this.state.selectedVideo }/>
+        <VideoList
+        onVideoSelect={ selectedVideo => this.setState({ selectedVideo }) } 
+        videos={ this.state.videos } />
       </div>
     );
   }

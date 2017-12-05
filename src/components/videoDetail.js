@@ -1,7 +1,7 @@
 import React from 'react';
 
 const VideoDetail = ({ video }) => {
-  if (!video) {
+  if (!video) { // This check is not really ideal
     return <div>Loading...</div>;
   }
 
