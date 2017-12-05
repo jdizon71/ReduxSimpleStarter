@@ -1,6 +1,7 @@
 import React, { Component } from 'react'; // ES6 import statement
 import ReactDOM from 'react-dom'; // Used to render a component to the DOM
 import YTSearch from 'youtube-api-search';
+import _ from 'lodash'; // It is common to use `_` when importing lodash
 
 import SearchBar from './components/searchBar';
 import VideoList from './components/videoList';
@@ -33,9 +34,11 @@ class App extends Component { // ES6 syntax replaces `function` keyword with fat
   }
 
   render() {
+    const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 300); // The fat arrow function will only be called every 300 milliseconds
+
     return ( // For multiline JSX, it's best, but not required to use () to encapsulate the entire expression
       <div>
-        <SearchBar onSearchTermChange={ term => this.videoSearch(term) } />
+        <SearchBar onSearchTermChange={ videoSearch } />
         <VideoDetail video={ this.state.selectedVideo }/>
         <VideoList
         onVideoSelect={ selectedVideo => this.setState({ selectedVideo }) }
