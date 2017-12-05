@@ -20,7 +20,11 @@ class App extends Component { // ES6 syntax replaces `function` keyword with fat
       selectedVideo: null
      }
 
-    YTSearch({ key: API_KEY, term: 'boosted board' }, (videos) => { // `video` is arbitrary; you can whatever variable name you want
+     this.videoSearch('boosted boards');
+  }
+
+  videoSearch(term) { // callback for searching videos by `term`
+    YTSearch({ key: API_KEY, term: term }, (videos) => { // `video` is arbitrary; you can whatever variable name you want
       this.setState({
         videos: videos,
         selectedVideo: videos[0]
@@ -31,10 +35,10 @@ class App extends Component { // ES6 syntax replaces `function` keyword with fat
   render() {
     return ( // For multiline JSX, it's best, but not required to use () to encapsulate the entire expression
       <div>
-        <SearchBar />
+        <SearchBar onSearchTermChange={ term => this.videoSearch(term) } />
         <VideoDetail video={ this.state.selectedVideo }/>
         <VideoList
-        onVideoSelect={ selectedVideo => this.setState({ selectedVideo }) } 
+        onVideoSelect={ selectedVideo => this.setState({ selectedVideo }) }
         videos={ this.state.videos } />
       </div>
     );
